@@ -148,7 +148,7 @@ def get_route(hostname):
                     string_ttl = str(ttl)
                     string_ms= str((timeReceived - t) * 1000)
                     tracelist2.append((string_ttl,string_ms,string_addr,hostaddr))
-                    print("%d\t%.0f ms\t%s\t%s" % (ttl, (timeReceived - t) * 1000, addr[0], hostaddr))
+                    #print("%d\t%.0f ms\t%s\t%s" % (ttl, (timeReceived - t) * 1000, addr[0], hostaddr))
                     # Fill in end
                 elif types == 3:
                     bytes = struct.calcsize("d")
@@ -158,7 +158,7 @@ def get_route(hostname):
                     string_ttl = str(ttl)
                     string_ms = str((timeReceived - t) * 1000)
                     tracelist2.append((string_ttl, string_ms, string_addr, hostaddr))
-                    print("%d\t%.0f ms\t%s\t%s" % (ttl, (timeReceived - t) * 1000, addr[0], hostaddr))
+                    #print("%d\t%.0f ms\t%s\t%s" % (ttl, (timeReceived - t) * 1000, addr[0], hostaddr))
                     # Fill in end
 
                 elif types == 0:
@@ -169,7 +169,7 @@ def get_route(hostname):
                     string_ttl = str(ttl)
                     string_ms = str((timeReceived - t) * 1000)
                     tracelist2.append((string_ttl, string_ms, string_addr, hostaddr))
-                    print("%d\t%.0f ms\t%s\t%s" % (ttl, (timeReceived - timeSent) * 1000, addr[0], hostaddr))
+                    #print("%d\t%.0f ms\t%s\t%s" % (ttl, (timeReceived - timeSent) * 1000, addr[0], hostaddr))
                     # Fill in end
                 else:
                     # Fill in start
