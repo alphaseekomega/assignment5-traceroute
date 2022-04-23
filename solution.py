@@ -15,9 +15,9 @@ TRIES = 2
 # The packet that we shall send to each router along the path is the ICMP echo
 # request packet, which is exactly what we had used in the ICMP ping exercise.
 # We shall use the same packet that we built in the Ping exercise
+
 def checksum(str):
-    # In this function we make the checksum of our packet
-    # hint: see icmpPing lab
+# In this function we make the checksum of our packet. hint: see icmpPing lab
     csum = 0
     countTo = (len(str) // 2) * 2
     count = 0
