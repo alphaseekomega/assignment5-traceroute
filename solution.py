@@ -71,12 +71,11 @@ def build_packet():
 
 
 def get_route(hostname):
-    # timeLeft = TIMEOUT     # Is this line in the wrong place? I changed it to three lines below......
     #print("Begin traceroute to " + hostname + "(" + gethostbyname(hostname) + ")......\n")
+    timeLeft = TIMEOUT
 
     for ttl in range(1, MAX_HOPS):
         for tries in range(TRIES):
-            timeLeft = TIMEOUT
             destAddr = gethostbyname(hostname)
             # Fill in start
             # Make a raw socket named mySocket
@@ -137,8 +136,7 @@ def get_route(hostname):
                 elif type == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
-                    print("%d\t%.0f ms\t%s\t%s" % (
-                    ttl, (timeReceived - timeSent) * 1000, addr[0], routerHostname))
+                    print("%d\t%.0f ms\t%s\t%s" % (ttl, (timeReceived - timeSent) * 1000, addr[0], routerHostname))
                     return
                 else:
                     print("error")
