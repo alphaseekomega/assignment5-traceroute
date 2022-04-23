@@ -80,7 +80,7 @@ def get_route(hostname):
             destAddr = gethostbyname(hostname)
             # Fill in start
             # Make a raw socket named mySocket
-            mySocket = None
+            mySocket = 0
             icmp = getprotobyname("icmp")
             try:
                 mySocket = socket(AF_INET, SOCK_RAW, icmp)
