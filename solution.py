@@ -42,10 +42,20 @@ def build_packet():
     # In the sendOnePing() method of the ICMP Ping exercise ,firstly the header of our
     # packet to be sent was made, secondly the checksum was appended to the header and
     # then finally the complete packet was sent to the destination.
-
+    ID = os.getpid() & 0xffff
+    lclChecksum = 0
     # Make the header in a similar way to the ping exercise.
-    # Append checksum to the header.
+    header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, lclChecksum, ID, 1)
+    data = struct.pack("d", time.time())
 
+    lclChecksum = checksum(header + data)
+
+    if sys.platform == 'darwin':
+        lclChecksum = htons(lclChecksum) & 0xffff
+    else:
+        lclChecksum = htons(lclChecksum)
+    # Append checksum to the header.
+    header = struct.pack("bbHHh", ICMP_ECHO_REQUEST, 0, lclChecksum, ID,1)
     # Don’t send the packet yet , just return the final packet in this function.
     #Fill in end
 
@@ -65,6 +75,12 @@ def get_route(hostname):
 
             #Fill in start
             # Make a raw socket named mySocket
+            mySocket = None
+            icmp = getprotobyname("icmp")
+            try:
+                mySocket = socket(AF_INET, SOCK_RAW, icmp)
+            except error as msg:
+                print("Error creating socket:", msg)
             #Fill in end
 
             mySocket.setsockopt(IPPROTO_IP, IP_TTL, struct.pack('I', ttl))
