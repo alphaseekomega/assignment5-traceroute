@@ -72,7 +72,7 @@ def build_packet():
 
 def get_route(hostname):
     # timeLeft = TIMEOUT     # Is this line in the wrong place? I changed it to three lines below......
-    print("Begin traceroute to " + hostname + "(" + gethostbyname(hostname) + ")......\n")
+    #print("Begin traceroute to " + hostname + "(" + gethostbyname(hostname) + ")......\n")
 
     for ttl in range(1, MAX_HOPS):
         for tries in range(TRIES):
@@ -127,17 +127,17 @@ def get_route(hostname):
                 if type == 11:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
-                    print("%d\trtt=%.0f ms\tIP = %s\tHost:%s" % (
+                    print("%d\t%.0f ms\t%s\t%s" % (
                     ttl, (timeReceived - t) * 1000, addr[0], routerHostname))
                 elif type == 3:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
-                    print("%d\trtt=%.0f ms\tIP = %s\tHost:%s" % (
+                    print("%d\t%.0f ms\t%s\t%s" % (
                     ttl, (timeReceived - t) * 1000, addr[0], routerHostname))
                 elif type == 0:
                     bytes = struct.calcsize("d")
                     timeSent = struct.unpack("d", recvPacket[28:28 + bytes])[0]
-                    print("%d\trtt=%.0f ms\tIP = %s\tHost:%s" % (
+                    print("%d\t%.0f ms\t%s\t%s" % (
                     ttl, (timeReceived - timeSent) * 1000, addr[0], routerHostname))
                     return
                 else:
