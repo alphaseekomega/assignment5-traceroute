@@ -6,7 +6,7 @@ import time
 import select
 import binascii
 
-site = '{0}'
+#site = '{0}'
 ICMP_ECHO_REQUEST = 8
 MAX_HOPS = 30
 TIMEOUT = 2.0
